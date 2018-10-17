@@ -14,9 +14,9 @@ public class MainTeleOpMode extends OpMode {
     final private static double JOYSTICK_DEADBAND = 0.1;
 
     //Encoder Ticks Variables
-    double motorSpeed = 1.0; //100%
+    private double motorSpeed = 1.0; //100%
 
-    BotDawg robot;
+    private BotDawg robot;
 
     @Override
     public void init() {
@@ -58,12 +58,15 @@ public class MainTeleOpMode extends OpMode {
         //if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND) leftJoyStick = 0;
         //if (Math.abs(rightJoyStick) < JOYSTICK_DEADBAND) rightJoyStick = 0;
 
-        robot.motor.setPower(motorSpeed);
+        robot.motorFrontLeft.setPower(motorSpeed);
+        robot.motorFrontRight.setPower(motorSpeed);
+        robot.motorBackLeft.setPower(motorSpeed);
+        robot.motorBackRight.setPower(motorSpeed);
 
 
 
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "power (%.2f)", motorSpeed);
+        telemetry.addData("Motor", "power (%.2f)", motorSpeed);
         //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
 
     }
