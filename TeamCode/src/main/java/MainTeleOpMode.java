@@ -1,28 +1,34 @@
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+//import org.firstinspires.ftc.teamcode.BotDawg;
 
 @TeleOp(name = "MainTeleOpMode", group = "TeleOp")
 
 public class MainTeleOpMode extends OpMode {
 
     //Creating variables
-
     private ElapsedTime runtime = new ElapsedTime();
 
     double leftJoyStick, rightJoyStick;
     final private static double JOYSTICK_DEADBAND = 0.1;
 
     //Encoder Ticks Variables
-    private double motorSpeed = 1.0; //100%
+    double motorSpeed = 1.0; //100%
 
-    private BotDawg robot;
+    BotDawg robot;
 
     @Override
     public void init() {
 
         robot = new BotDawg();
         robot.init(hardwareMap);
+
+
+
 
 
     }
@@ -38,9 +44,8 @@ public class MainTeleOpMode extends OpMode {
     public void loop() {
 
         //Assigning gamepad values
-
-        //leftJoyStick = -gamepad1.left_stick_y;
-       // rightJoyStick = gamepad1.right_stick_x;
+        leftJoyStick = -gamepad1.left_stick_y;
+        rightJoyStick = gamepad1.right_stick_x;
 
 
 
@@ -55,18 +60,22 @@ public class MainTeleOpMode extends OpMode {
 
         //Testing JOYSTICK_DEADBAND
 
-        //if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND) leftJoyStick = 0;
-        //if (Math.abs(rightJoyStick) < JOYSTICK_DEADBAND) rightJoyStick = 0;
+        if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND){
+            robot.leftBack.setPower(0);
+            robot.leftFront.setPower(0);
+        }
 
-        robot.motorFrontLeft.setPower(motorSpeed);
-        robot.motorFrontRight.setPower(motorSpeed);
-        robot.motorBackLeft.setPower(motorSpeed);
-        robot.motorBackRight.setPower(motorSpeed);
-
-
+        if (Math.abs(rightJoyStick) < JOYSTICK_DEADBAND) {
+            robot.rightBack.setPower(0);
+            robot.rightFront.setPower(0);
+        }
+        robot.rightFront.setPower(rightJoyStick);
+        robot.leftFront.setPower(leftJoyStick);
+        robot.rightBack.setPower(rightJoyStick);
+        robot.leftBack.setPower(leftJoyStick);
 
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motor", "power (%.2f)", motorSpeed);
+        telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
 
     }
