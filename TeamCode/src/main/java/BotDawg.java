@@ -69,6 +69,7 @@ public class BotDawg
 
         //Assigning variables
 
+
         rightBack = hardwareMap.dcMotor.get("rightBack");
         rightFront = hardwareMap.dcMotor.get("rightFront");
         leftFront = hardwareMap.dcMotor.get("leftFront");
