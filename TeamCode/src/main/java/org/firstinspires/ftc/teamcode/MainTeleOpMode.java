@@ -26,18 +26,12 @@ public class MainTeleOpMode extends OpMode {
 
         robot = new BotDawg();
         robot.init(hardwareMap);
-
-
-
-
-
     }
 
     //Code that resets the elapsed time once the driver hits play
     @Override
     public void start() {
         runtime.reset();
-
     }
 
 
@@ -45,35 +39,27 @@ public class MainTeleOpMode extends OpMode {
 
         //Assigning gamepad values
         leftJoyStick = -gamepad1.left_stick_y;
-        rightJoyStick = gamepad1.right_stick_x;
-
-
-
-
-        //This is for limiting the speed of the Lift motor if the driver wants to slow it down.
-
-
-
-
-
-
-
+        rightJoyStick = gamepad1.right_stick_y;
         //Testing JOYSTICK_DEADBAND
 
         if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND){
             robot.leftBack.setPower(0);
             robot.leftFront.setPower(0);
         }
-
         if (Math.abs(rightJoyStick) < JOYSTICK_DEADBAND) {
             robot.rightBack.setPower(0);
             robot.rightFront.setPower(0);
         }
+
+        //Setting power to the motors
         robot.rightFront.setPower(rightJoyStick);
         robot.leftFront.setPower(leftJoyStick);
         robot.rightBack.setPower(rightJoyStick);
         robot.leftBack.setPower(leftJoyStick);
 
+
+
+        //Telemtry stuff
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);

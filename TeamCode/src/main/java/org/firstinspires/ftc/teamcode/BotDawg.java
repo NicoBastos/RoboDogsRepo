@@ -50,10 +50,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class BotDawg
 {
     /* Public OpMode members. */
-    public DcMotor motorFrontLeft = null;
-    public DcMotor motorFrontRight = null;
-    public DcMotor motorBackLeft = null;
-    public DcMotor motorBackRight = null;
+    public DcMotor leftFront = null;
+    public DcMotor rightFront = null;
+    public DcMotor rightBack = null;
+    public DcMotor leftBack = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -69,14 +69,17 @@ public class BotDawg
 
         //Assigning variables
 
-        motorFrontLeft = hardwareMap.dcMotor.get("frontLeft");
-        motorFrontRight = hardwareMap.dcMotor.get("frontRight");
-        motorBackLeft = hardwareMap.dcMotor.get("backLeft");
-        motorBackRight = hardwareMap.dcMotor.get("backRight");
+
+        rightBack = hardwareMap.dcMotor.get("rightBack");
+        rightFront = hardwareMap.dcMotor.get("rightFront");
+        leftFront = hardwareMap.dcMotor.get("leftFront");
+        leftBack = hardwareMap.dcMotor.get("leftBack");
         //Assigning directions of motors
 
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setDirection(DcMotor.Direction.FORWARD);
+        rightBack.setDirection(DcMotor.Direction.FORWARD);
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
+        leftBack.setDirection(DcMotor.Direction.FORWARD);
     }
  }
 
