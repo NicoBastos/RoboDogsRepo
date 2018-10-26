@@ -15,7 +15,6 @@ public class MainTeleOpMode extends OpMode {
 
     double leftJoyStick, rightJoyStick;
     final private static double JOYSTICK_DEADBAND = 0.1;
-
     //Encoder Ticks Variables
     double motorSpeed = 1.0; //100%
 
