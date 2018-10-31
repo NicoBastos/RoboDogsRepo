@@ -1,12 +1,14 @@
+package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-//import org.firstinspires.ftc.teamcode.BotDawg;
+import org.firstinspires.ftc.teamcode.BotDawg;
 
-@TeleOp(name = "MainTeleOpMode", group = "TeleOp")
+//import org.firstinspires.ftc.teamcode.org.firstinspires.ftc.teamcode.BotDawg;
+
+@TeleOp(name = "org.firstinspires.ftc.teamcode.MainTeleOpMode", group = "TeleOp")
 
 public class MainTeleOpMode extends OpMode {
 
