@@ -16,6 +16,8 @@ public class MainTeleOpMode extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     double leftJoyStick, rightJoyStick;
+    boolean g2X, g2B, g2Y, g2A;
+
     final private static double JOYSTICK_DEADBAND = 0.1;
     //Encoder Ticks Variables
     double motorSpeed = 1.0; //100%
@@ -47,13 +49,11 @@ public class MainTeleOpMode extends OpMode {
         //Assigning gamepad values
         leftJoyStick = -gamepad1.left_stick_y;
         rightJoyStick = gamepad1.right_stick_x;
-
-
-
-
-        //This is for limiting the speed of the Lift motor if the driver wants to slow it down.
-
-
+        g2X = gamepad2.x;
+        g2B = gamepad2.b;
+        g2Y = gamepad2.y;
+        g2A = gamepad2.a;
+        //This is for limiting the speed of the Lift motor if the driver wants to slow it down
 
 
 
@@ -70,11 +70,23 @@ public class MainTeleOpMode extends OpMode {
             robot.rightBack.setPower(0);
             robot.rightFront.setPower(0);
         }
+        // Controls for Latch Arm//
+        if (g2A & !g2Y) {
+            robot.latchMotor.setPower(-1);
+        }
+        else if (g2Y & !g2A) {
+            robot.latchMotor.setPower(1);
+        }
+        if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {
+            robot.latchServo.setPosition(robot.latchServo.getPosition()+10);
+        }
+        else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0) {
+            robot.latchServo.setPosition(robot.latchServo.getPosition()-10);
+        }
         robot.rightFront.setPower(rightJoyStick);
         robot.leftFront.setPower(leftJoyStick);
         robot.rightBack.setPower(rightJoyStick);
         robot.leftBack.setPower(leftJoyStick);
-
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
