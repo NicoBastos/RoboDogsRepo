@@ -89,7 +89,7 @@ public class PushBot extends LinearOpMode {
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
         // Step 1:  Drive backward for 3 seconds
-        robot.latchServo.setPosition(0);
+        //robot.latchServo.setPosition(0);
         robot.leftFront.setPower(-.6);
         robot.leftBack.setPower(-.6);
         robot.rightFront.setPower(-.6);
@@ -98,7 +98,7 @@ public class PushBot extends LinearOpMode {
         while (opModeIsActive() && (runtime.seconds() < 4.0)) {
 
         }
-        robot.latchMotor.setPower(-6);
-        robot.latchServo.setPosition(90);
+        robot.liftMotor.setPower(-1);
+        //robot.latchServo.setPosition(90);
     }
 }

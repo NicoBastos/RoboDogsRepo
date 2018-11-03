@@ -55,8 +55,8 @@ public class BotDawg
     public DcMotor rightFront = null;
     public DcMotor rightBack = null;
     public DcMotor leftBack = null;
-    public DcMotor latchMotor = null;
-    public Servo latchServo = null;
+    public DcMotor liftMotor = null;
+    //public Servo latchServo = null; //
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -77,15 +77,15 @@ public class BotDawg
         rightFront = hardwareMap.dcMotor.get("rightFront");
         leftFront = hardwareMap.dcMotor.get("leftFront");
         leftBack = hardwareMap.dcMotor.get("leftBack");
-        latchMotor = hardwareMap.dcMotor.get("latchMotor");
-        latchServo = hardwareMap.servo.get("latchServo");
+        liftMotor = hardwareMap.dcMotor.get("liftMotor");
+        // latchServo = hardwareMap.servo.get("latchServo"); //
         //Assigning directions of motors
 
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         rightBack.setDirection(DcMotor.Direction.FORWARD);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setDirection(DcMotor.Direction.FORWARD);
-        latchMotor.setDirection(DcMotor.Direction.REVERSE);
+        liftMotor.setDirection(DcMotor.Direction.REVERSE);
     }
  }
 

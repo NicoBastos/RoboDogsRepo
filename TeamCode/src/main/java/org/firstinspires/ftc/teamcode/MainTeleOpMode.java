@@ -70,29 +70,30 @@ public class MainTeleOpMode extends OpMode {
             robot.rightBack.setPower(0);
             robot.rightFront.setPower(0);
         }
-        // Controls for Latch Arm//
-        if (g2A & !g2Y) {
-            robot.latchMotor.setPower(-1);
-        }
-        else if (g2Y & !g2A) {
-            robot.latchMotor.setPower(1);
-        }
-        if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {
-            robot.latchServo.setPosition(robot.latchServo.getPosition()+10);
-        }
-        else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0) {
-            robot.latchServo.setPosition(robot.latchServo.getPosition()-10);
-        }
         robot.rightFront.setPower(rightJoyStick);
         robot.leftFront.setPower(leftJoyStick);
         robot.rightBack.setPower(rightJoyStick);
         robot.leftBack.setPower(leftJoyStick);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
-        //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
+        // Controls for Latch Arm//
+        if (g2A & !g2Y) {
+            robot.liftMotor.setPower(-1);
+        }
+        else if (g2Y & !g2A) {
+            robot.liftMotor.setPower(1);
+        }
+
+
 
     }
 
 
     //use stop function to go back to bottom position
-}
+    //if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {//
+    //robot.latchServo.setPosition(robot.latchServo.getPosition()+10);//
+}//
+//else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0) {//
+//robot.latchServo.setPosition(robot.latchServo.getPosition()-10);//
+        //
+                //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
