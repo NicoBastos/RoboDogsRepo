@@ -56,8 +56,8 @@ public class BotDawg
     public DcMotor rightBack = null;
     public DcMotor leftBack = null;
     public DcMotor liftMotor = null;
-    //public Servo latchServo = null; //
-
+    public Servo latchServo = null;
+    public Servo teamMarker = null;
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
@@ -78,7 +78,8 @@ public class BotDawg
         leftFront = hardwareMap.dcMotor.get("leftFront");
         leftBack = hardwareMap.dcMotor.get("leftBack");
         liftMotor = hardwareMap.dcMotor.get("liftMotor");
-        // latchServo = hardwareMap.servo.get("latchServo"); //
+        latchServo = hardwareMap.servo.get("latchServo");
+        teamMarker = hardwareMap.servo.get("teamMarker");
         //Assigning directions of motors
 
         rightFront.setDirection(DcMotor.Direction.FORWARD);
