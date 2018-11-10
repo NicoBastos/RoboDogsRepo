@@ -60,7 +60,7 @@ import static com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Time", group="Pushbot")
+@Autonomous(name="Autonomous", group="Pushbot")
 public class PushBot extends LinearOpMode {
 
     //Defining robot//
@@ -87,19 +87,31 @@ public class PushBot extends LinearOpMode {
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
 
-        // Step 1:  Drive backward for 3 seconds
-        robot.latchServo.setPosition(0);
+        // Step 1:  Lower lift for .5 seconds
+//        robot.liftMotor.setPower(-1);
+//        runtime.reset();
+//        while (opModeIsActive() && (runtime.seconds() < .5)) {
+//
+//        }
+            // Step 2: Unlatch the robot from the center for 1.5 seconds.
+//        robot.liftMotor.setPower(0);
+//        robot.latchServo.setPosition(180);
+//        runtime.reset();
+//        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+//
+//        }
+            // Step 3: Move the robot backwards towards the marker for 4 seconds
         robot.teamMarker.setPosition(0);
-        robot.liftMotor.setPower(-1);
+        robot.rampServo.setPosition(0);
         robot.leftFront.setPower(-.6);
         robot.leftBack.setPower(-.6);
         robot.rightFront.setPower(-.6);
         robot.rightBack.setPower(-.6);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 4.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 4)) {
 
         }
-        robot.liftMotor.setPower(0);
+//        robot.liftMotor.setPower(0);
         robot.leftFront.setPower(0);
         robot.leftBack.setPower(0);
         robot.rightFront.setPower(0);

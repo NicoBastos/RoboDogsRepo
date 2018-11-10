@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
-
+@Disabled
 public class JoystickTest extends OpMode
 {
     BotDawg robot;

@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.BotDawg;
 
 //import org.firstinspires.ftc.teamcode.org.firstinspires.ftc.teamcode.BotDawg;
 
-@TeleOp(name = "org.firstinspires.ftc.teamcode.MainTeleOpMode", group = "TeleOp")
+@TeleOp(name = "MainTeleOpMode", group = "TeleOp")
 
 public class MainTeleOpMode extends OpMode {
 
@@ -17,6 +17,7 @@ public class MainTeleOpMode extends OpMode {
 
     double leftJoyStick, rightJoyStick;
     boolean g2X, g2B, g2Y, g2A;
+    float g2RT, g2LT;
 
     final private static double JOYSTICK_DEADBAND = 0.1;
     //Encoder Ticks Variables
@@ -48,11 +49,13 @@ public class MainTeleOpMode extends OpMode {
 
         //Assigning gamepad values
         leftJoyStick = -gamepad1.left_stick_y;
-        rightJoyStick = gamepad1.left_stick_y;
+        rightJoyStick = gamepad1.right_stick_y;
         g2X = gamepad2.x;
         g2B = gamepad2.b;
         g2Y = gamepad2.y;
         g2A = gamepad2.a;
+        g2RT = gamepad2.right_trigger;
+        g2LT = gamepad2.left_trigger;
         //This is for limiting the speed of the Lift motor if the driver wants to slow it down
 
 
@@ -77,16 +80,23 @@ public class MainTeleOpMode extends OpMode {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         // Controls for Latch Arm//
-        if (g2A & !g2Y) {
-            robot.liftMotor.setPower(1);
+//        if (g2A & !g2Y) {
+//            robot.liftMotor.setPower(1);
+//        }
+//        else if (g2Y & !g2A) {
+//            robot.liftMotor.setPower(-1);
+//        }
+//        else {
+//            robot.liftMotor.setPower(0);
+//
+//
+//        }
+        if (g2LT >=.9 & g2RT <.9 & robot.rampServo.getPosition() < 180) {
+            robot.rampServo.setPosition(robot.rampServo.getPosition()+10);
         }
-        else if (g2Y & !g2A) {
-            robot.liftMotor.setPower(-1);
+        else if (g2RT >=.9 & g2LT <.9 & robot.rampServo.getPosition() > 0) {
+            robot.rampServo.setPosition(robot.rampServo.getPosition()-10);
         }
-        else {
-            robot.liftMotor.setPower(0);
-        }
-
 
     }
 
