@@ -76,22 +76,27 @@ public class MainTeleOpMode extends OpMode {
         // Controls for Latch Arm//
         if (g2A & !g2Y) {
             robot.liftMotor.setPower(1);
-        }
-        else if (g2Y & !g2A) {
+            telemetry.addData("A Button", "True");
+        } else if (g2Y & !g2A) {
             robot.liftMotor.setPower(-1);
-        }
-        else {
+            telemetry.addData("Y Button", "True");
+        } else {
             robot.liftMotor.setPower(0);
 //
 //
         }
 
-        if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {
-            robot.latchServo.setPosition(robot.latchServo.getPosition() + 10);
+        if (g2X & !g2B) {
+            robot.latchServo.setPosition(1);
+            telemetry.addData("X Button", "True");
         }//
-        else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0)
-            robot.latchServo.setPosition(robot.latchServo.getPosition() - 10);
+        else if (g2B & !g2X) {
+            robot.latchServo.setPosition(0);
+            telemetry.addData("B Button", "True");
+
+        }
     }
+
 }
 
 
