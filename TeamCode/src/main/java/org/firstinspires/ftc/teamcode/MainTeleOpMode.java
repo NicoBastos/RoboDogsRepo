@@ -32,9 +32,6 @@ public class MainTeleOpMode extends OpMode {
         robot.init(hardwareMap);
 
 
-
-
-
     }
 
     //Code that resets the elapsed time once the driver hits play
@@ -59,12 +56,9 @@ public class MainTeleOpMode extends OpMode {
         //This is for limiting the speed of the Lift motor if the driver wants to slow it down
 
 
-
-
-
         //Testing JOYSTICK_DEADBAND
 
-        if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND){
+        if (Math.abs(leftJoyStick) < JOYSTICK_DEADBAND) {
             robot.leftBack.setPower(0);
             robot.leftFront.setPower(0);
         }
@@ -80,32 +74,28 @@ public class MainTeleOpMode extends OpMode {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         // Controls for Latch Arm//
-//        if (g2A & !g2Y) {
-//            robot.liftMotor.setPower(1);
-//        }
-//        else if (g2Y & !g2A) {
-//            robot.liftMotor.setPower(-1);
-//        }
-//        else {
-//            robot.liftMotor.setPower(0);
-//
-//
-//        }
-        if (g2LT >=.9 & g2RT <.9 & robot.rampServo.getPosition() < 180) {
-            robot.rampServo.setPosition(robot.rampServo.getPosition()+10);
+        if (g2A & !g2Y) {
+            robot.liftMotor.setPower(1);
         }
-        else if (g2RT >=.9 & g2LT <.9 & robot.rampServo.getPosition() > 0) {
-            robot.rampServo.setPosition(robot.rampServo.getPosition()-10);
+        else if (g2Y & !g2A) {
+            robot.liftMotor.setPower(-1);
+        }
+        else {
+            robot.liftMotor.setPower(0);
+//
+//
         }
 
+        if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {
+            robot.latchServo.setPosition(robot.latchServo.getPosition() + 10);
+        }//
+        else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0)
+            robot.latchServo.setPosition(robot.latchServo.getPosition() - 10);
     }
+}
 
 
-    //use stop function to go back to bottom position
-    //if (g2X & !g2B & (robot.latchServo.getPosition()) < 180) {//
-    //robot.latchServo.setPosition(robot.latchServo.getPosition()+10);//
-}//
-//else if (g2B & !g2X & (robot.latchServo.getPosition()) > 0) {//
-//robot.latchServo.setPosition(robot.latchServo.getPosition()-10);//
+//    use stop function to go back to bottom position
+
         //
                 //telemetry.addData("CurrentPostition", "currentPosition: (%.2f)", liftUpdatedTicks);
