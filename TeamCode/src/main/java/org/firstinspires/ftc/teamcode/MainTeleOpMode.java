@@ -74,10 +74,10 @@ public class MainTeleOpMode extends OpMode {
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         // Controls for Latch Arm//
-        if (g2A & !g2Y) {
+        if (g2A && !g2Y) {
             robot.liftMotor.setPower(1);
             telemetry.addData("A Button", "True");
-        } else if (g2Y & !g2A) {
+        } else if (g2Y && !g2A) {
             robot.liftMotor.setPower(-1);
             telemetry.addData("Y Button", "True");
         } else {
@@ -86,12 +86,12 @@ public class MainTeleOpMode extends OpMode {
 //
         }
 
-        if (g2X & !g2B) {
-            robot.latchServo.setPosition(1);
+        if (g2X && !g2B) {
+            robot.latchServo.setPosition(0);
             telemetry.addData("X Button", "True");
         }//
-        else if (g2B & !g2X) {
-            robot.latchServo.setPosition(0);
+        else if (g2B && !g2X) {
+            robot.latchServo.setPosition(1);
             telemetry.addData("B Button", "True");
 
         }
