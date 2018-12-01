@@ -28,6 +28,7 @@ package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights r
  */
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -58,9 +59,9 @@ public class BotDawg
     public DcMotor liftMotor = null;
     public Servo latchServo = null;
     public Servo teamMarker = null;
-    public Servo rampServo = null;
+
     /* local OpMode members. */
-    HardwareMap hwMap           =  null;
+    HardwareMap hardwareMap =  null;
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
@@ -72,8 +73,6 @@ public class BotDawg
     public void init(HardwareMap hardwareMap) {
 
         //Assigning variables
-
-
         rightBack = hardwareMap.dcMotor.get("rightBack");
         rightFront = hardwareMap.dcMotor.get("rightFront");
         leftFront = hardwareMap.dcMotor.get("leftFront");
@@ -83,8 +82,8 @@ public class BotDawg
         teamMarker = hardwareMap.servo.get("teamMarker");
         //Assigning directions of motors
 
-        rightFront.setDirection(DcMotor.Direction.FORWARD);
-        rightBack.setDirection(DcMotor.Direction.FORWARD);
+        rightFront.setDirection(DcMotor.Direction.REVERSE);
+        rightBack.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         leftBack.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);
