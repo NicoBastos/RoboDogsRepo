@@ -80,11 +80,11 @@ public class BotDawg
         liftMotor = hardwareMap.dcMotor.get("liftMotor");
         latchServo = hardwareMap.servo.get("latchServo");
         teamMarker = hardwareMap.servo.get("teamMarker");
-        //Assigning directions of motors
 
+        //Assigning directions of motors
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightBack.setDirection(DcMotor.Direction.REVERSE);
-        leftFront.setDirection(DcMotor.Direction.REVERSE);
+        leftFront.setDirection(DcMotor.Direction.FORWARD);
         leftBack.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);
     }
