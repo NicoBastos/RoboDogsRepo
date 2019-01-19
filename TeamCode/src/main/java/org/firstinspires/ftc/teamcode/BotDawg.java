@@ -63,7 +63,7 @@ public class BotDawg
     /* local OpMode members. */
     HardwareMap hardwareMap =  null;
     private ElapsedTime period  = new ElapsedTime();
-
+    double tickPerCentimeter = 28*40/(3.14159*10);
     /* Constructor */
     public BotDawg(){
 
@@ -87,6 +87,8 @@ public class BotDawg
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         leftBack.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);
+
+
     }
  }
 

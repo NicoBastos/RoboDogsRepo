@@ -30,8 +30,15 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+
+import static com.qualcomm.robotcore.hardware.Servo.Direction.FORWARD;
+import static com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE;
 
 /**
  * This file illustrates the concept of driving a path based on time.
@@ -54,17 +61,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonomous test", group="Pushbot")
-public class PushBotTest extends LinearOpMode {
+@Autonomous(name="Autonomous", group="Pushbot")
+public class DepoAutoBackUp extends LinearOpMode {
 
     //Defining robot//
     BotDawg robot;
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
-    static final double REVERSE_SPEED = -0.6;
-
-    static final double FORWARD_SPEED = 0.6;
+//    static final double REVERSE_SPEED = -0.6;
+//
+//    static final double FORWARD_SPEED = 0.6;
 
     @Override
     public void runOpMode() {
@@ -75,44 +82,62 @@ public class PushBotTest extends LinearOpMode {
          */
         robot = new BotDawg();
         robot.init(hardwareMap);
-
-
+        robot.teamMarker.setPosition(0);
+        robot.latchServo.setPosition(1);
+        robot.liftMotor.setPower(0);
+        robot.leftFront.setPower(0);
+        robot.leftBack.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightBack.setPower(0);
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
-
+        // Calculate lift lowering time, using phone encoder or calculating gear ratios with rpm of motor.
         // Step 1:  Lower lift for .5 seconds
+        //robot.teamMarker.setPosition(1);
+
+////            // Step 2: Unlatch the robot from the center for 1.6 seconds.
         robot.liftMotor.setPower(-1);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < .5)) {
-//
-//        }
-            // Step 2: Unlatch the robot from the center for 1.5 seconds.
-            robot.liftMotor.setPower(0);
-            robot.latchServo.setPosition(1);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 1.5)) {
-
-//        }
-                // Step 3: Move the robot backwards towards the marker for 4 seconds
-                robot.leftFront.setPower(-.6);
-                robot.leftBack.setPower(-.6);
-                robot.rightFront.setPower(-.6);
-                robot.rightBack.setPower(-.6);
-                runtime.reset();
-                while (opModeIsActive() && (runtime.seconds() < 4)) {
-
-                }
-//        robot.liftMotor.setPower(0);
-                robot.leftFront.setPower(0);
-                robot.leftBack.setPower(0);
-                robot.rightFront.setPower(0);
-                robot.rightBack.setPower(0);
-
-            }
+        while (opModeIsActive() && (runtime.seconds() < 1.3)) {
 
         }
+//                // Step 3: Move the robot backwards towards the marker for 4 seconds
+        robot.teamMarker.setPosition(0);
+        robot.latchServo.setPosition(0);
+        robot.liftMotor.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1)) {
 
+        }
+        robot.leftFront.setPower(.6);
+        robot.leftBack.setPower(.6);
+        robot.rightFront.setPower(.6);
+        robot.rightBack.setPower(.6);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() <1.9)) {
+
+        }
+        robot.teamMarker.setPosition(0);
+        robot.leftFront.setPower(0);
+        robot.leftBack.setPower(0);
+        robot.rightFront.setPower(.6);
+        robot.rightBack.setPower(.6);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() <.7)) {
+
+        }
+        //        robot.liftMotor.setPower(0);
+        robot.leftFront.setPower(0);
+        robot.leftBack.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightBack.setPower(0);
+        robot.teamMarker.setPosition(1);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() <1)) {
+
+        }
     }
 }
+

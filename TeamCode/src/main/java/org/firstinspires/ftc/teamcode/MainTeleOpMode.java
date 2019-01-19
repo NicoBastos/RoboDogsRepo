@@ -45,8 +45,8 @@ public class MainTeleOpMode extends OpMode {
     public void loop() {
 
         //Assigning gamepad values
-        leftJoyStick = -gamepad1.left_stick_y;
-        rightJoyStick = -gamepad1.right_stick_y;
+        leftJoyStick = gamepad1.left_stick_y;
+        rightJoyStick = gamepad1.right_stick_y;
         g2X = gamepad2.x;
         g2B = gamepad2.b;
         g2Y = gamepad2.y;
@@ -67,10 +67,10 @@ public class MainTeleOpMode extends OpMode {
             robot.rightBack.setPower(0);
             robot.rightFront.setPower(0);
         }
-        robot.rightFront.setPower(rightJoyStick);
-        robot.leftFront.setPower(leftJoyStick);
-        robot.rightBack.setPower(rightJoyStick);
-        robot.leftBack.setPower(leftJoyStick);
+        robot.rightFront.setPower(-rightJoyStick);
+        robot.leftFront.setPower(-leftJoyStick);
+        robot.rightBack.setPower(-rightJoyStick);
+        robot.leftBack.setPower(-leftJoyStick);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "power (%.2f)", motorSpeed);
         // Controls for Latch Arm//

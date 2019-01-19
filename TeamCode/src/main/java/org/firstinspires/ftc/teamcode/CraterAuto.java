@@ -61,8 +61,8 @@ import static com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonomous", group="Pushbot")
-public class PushBot extends LinearOpMode {
+@Autonomous(name="CraterAuto", group="CraterAuto")
+public class CraterAuto extends LinearOpMode {
 
     //Defining robot//
     BotDawg robot;
@@ -82,41 +82,43 @@ public class PushBot extends LinearOpMode {
          */
         robot = new BotDawg();
         robot.init(hardwareMap);
-
+        robot.teamMarker.setPosition(0);
+        robot.latchServo.setPosition(1);
+        robot.liftMotor.setPower(0);
+        robot.leftFront.setPower(0);
+        robot.leftBack.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightBack.setPower(0);
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // Step through each leg of the path, ensuring that the Auto mode has not been stopped along the way
-    // Calculate lift lowering time, using phone encoder or calculating gear ratios with rpm of motor.
+        // Calculate lift lowering time, using phone encoder or calculating gear ratios with rpm of motor.
         // Step 1:  Lower lift for .5 seconds
         //robot.teamMarker.setPosition(1);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 5)) {
 
-        }
-//            // Step 2: Unlatch the robot from the center for 1.5 seconds.
-            robot.liftMotor.setPower(0);
-            robot.latchServo.setPosition(1);
-            runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 2)) {
+////            // Step 2: Unlatch the robot from the center for 1.6 seconds.
+        robot.liftMotor.setPower(-1);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1.3)) {
 
         }
 //                // Step 3: Move the robot backwards towards the marker for 4 seconds
-                robot.teamMarker.setPosition(0);
-                robot.leftFront.setPower(-.6);
-                robot.leftBack.setPower(-.6);
-                robot.rightFront.setPower(-.6);
-                robot.rightBack.setPower(-.6);
-                runtime.reset();
-                while (opModeIsActive() && (runtime.seconds() <15)) {
+        robot.teamMarker.setPosition(0);
+        robot.latchServo.setPosition(0);
+        robot.liftMotor.setPower(0);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1)) {
 
-                }
-//        robot.liftMotor.setPower(0);
-                robot.leftFront.setPower(0);
-                robot.leftBack.setPower(0);
-                robot.rightFront.setPower(0);
-                robot.rightBack.setPower(0);
-                robot.teamMarker.setPosition(1);
-            }
+        }
+        robot.leftFront.setPower(.6);
+        robot.leftBack.setPower(.6);
+        robot.rightFront.setPower(.6);
+        robot.rightBack.setPower(.6);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 1.6)) {
+
+        }
+
+    }
 }
-
