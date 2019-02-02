@@ -30,16 +30,9 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
-
-import static com.qualcomm.robotcore.hardware.Servo.Direction.FORWARD;
-import static com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE;
 
 /**
  * This file illustrates the concept of driving a path based on time.
@@ -62,8 +55,8 @@ import static com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Depo_to_CraterAuto", group="DepoAuto")
-public class DepoAuto extends LinearOpMode {
+@Autonomous(name="JustDeepoAuto", group="DepoAuto")
+public class JustDepoAuto extends LinearOpMode {
 
     //Defining robot//
     BotDawg robot;
@@ -135,14 +128,13 @@ public class DepoAuto extends LinearOpMode {
                 robot.rightBack.setPower(1);
                 telemetry.addData("TargetEncoder",targetEncoder);
                 telemetry.update();
-//                while (robot.leftFront.isBusy() || robot.rightFront.isBusy())  {
         while (opModeIsActive() && robot.leftFront.isBusy()) {
         telemetry.addData("leftFront",robot.leftFront.getCurrentPosition());
         telemetry.addData("TargetEncoder",targetEncoder);
         telemetry.update();
 
                 }
-// Trying out the encoders
+
                 robot.leftFront.setPower(0);
                 robot.leftBack.setPower(0);
 //                robot.resetAllEncoders();
@@ -156,19 +148,10 @@ public class DepoAuto extends LinearOpMode {
                     telemetry.addData("TargetEncoder",targetEncoder);
                     telemetry.update();
                 }
-        //                runtime.reset();
-//                while (opModeIsActive() && (runtime.seconds() <1.9)) {
-//
-//                }
-                //turns left for .7 seconds
-//
+
             robot.rightFront.setPower(0);
             robot.rightBack.setPower(0);
 
-//            runtime.reset();
-//            while (opModeIsActive() && (runtime.seconds() <.7)) {
-//
-//            }
                 // drops team marker
                 robot.leftFront.setPower(0);
                 robot.leftBack.setPower(0);
@@ -179,39 +162,6 @@ public class DepoAuto extends LinearOpMode {
                 while (opModeIsActive() && (runtime.seconds() <1)) {
 
                 }
-                //turns from the depo
-            robot.rightFront.setPower(1);
-            robot.rightBack.setPower(1);
-//                robot.resetAllEncoders();
-            sleep(50);
-            targetEncoder += (int)(25*robot.tickPerCentimeter);
-            robot.rightFront.setTargetPosition(targetEncoder);
-            robot.rightBack.setTargetPosition(targetEncoder);
-
-            while (opModeIsActive() && robot.rightFront.isBusy()) {
-                telemetry.addData("Right Front", robot.rightFront.getCurrentPosition());
-                telemetry.addData("TargetEncoder",targetEncoder);
-                telemetry.update();
-            }
-            robot.leftFront.setPower(1);
-            robot.leftBack.setPower(1);
-//                robot.resetAllEncoders();
-            sleep(50);
-            targetEncoder += (int)(140*robot.tickPerCentimeter);
-            robot.rightFront.setTargetPosition(targetEncoder);
-            robot.rightBack.setTargetPosition(targetEncoder);
-            robot.leftFront.setTargetPosition(targetEncoder);
-            robot.leftBack.setTargetPosition(targetEncoder);
-            while (opModeIsActive() && robot.rightFront.isBusy()) {
-                telemetry.addData("Right Front", robot.rightFront.getCurrentPosition());
-                telemetry.addData("TargetEncoder",targetEncoder);
-                telemetry.update();
-        }
-            robot.leftFront.setPower(0);
-            robot.leftBack.setPower(0);
-            robot.rightBack.setPower(0);
-            robot.rightFront.setPower(0);
-
     }
 
 }

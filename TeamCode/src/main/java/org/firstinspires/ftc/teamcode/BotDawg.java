@@ -90,5 +90,12 @@ public class BotDawg
 
 
     }
+    public void resetAllEncoders() {
+        rightBack.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        rightFront.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        leftBack.setMode(DcMotor.RunMode.RESET_ENCODERS);
+        leftFront.setMode(DcMotor.RunMode.RESET_ENCODERS);
+
+    }
  }
 
